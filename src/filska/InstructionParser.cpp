@@ -6,7 +6,15 @@ using namespace filska::instruction;
 
 std::unique_ptr<Instruction> InstructionParser::parse(std::string s)
 {
-  if(s.starts_with("gto")) {
+  if(s.starts_with("add") ||
+    s.starts_with("sub") ||
+    s.starts_with("mul") ||
+    s.starts_with("div") ||
+    s.starts_with("mod") ||
+    s.starts_with("pow")) {
+    return std::make_unique<Bop>(s.substr(0, 3), s[4], s[6], s[7]);
+  }
+  else if(s.starts_with("gto")) {
     return std::make_unique<Gto>(std::stol(s.substr(4)));
   }
   else if(s == "hlt") {
@@ -24,10 +32,10 @@ std::unique_ptr<Instruction> InstructionParser::parse(std::string s)
   else if(s == "prt") {
     return std::make_unique<Prt>();
   }
-  if(s.starts_with("set")) {
+  else if(s.starts_with("set")) {
     return std::make_unique<Set>(std::stof(s.substr(4)));
   }
-  if(s.starts_with("swp")) {
+  else if(s.starts_with("swp")) {
     return std::make_unique<Swp>(s[4], s[5]);
   }
   else if(s == "tmx") {

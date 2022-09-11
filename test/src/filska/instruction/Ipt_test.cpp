@@ -25,7 +25,7 @@ TEST(Ipt, should_read_float_from_input_and_write_it_to_m)
   input << "1.23";
   auto pc_offset = Ipt().execute(program, input, std::cout);
   CHECK_EQUAL(1, pc_offset);
-  DOUBLES_EQUAL(1.23, program.sub_programs["main"].m, 0.001);
+  DOUBLES_EQUAL(1.23, program.sub_programs["main"].m, 0.0001);
   CHECK_FALSE(program.done);
 }
 

@@ -38,6 +38,16 @@ TEST(InstructionParser, should_throw_if_instruction_is_unknown)
   });
 }
 
+TEST(InstructionParser, should_parse_add)
+{
+  should_parse_to("add,x=yz", Bop("add", 'x', 'y', 'z'));
+}
+
+TEST(InstructionParser, should_parse_div)
+{
+  should_parse_to("div,x=yz", Bop("div", 'x', 'y', 'z'));
+}
+
 TEST(InstructionParser, should_parse_gto)
 {
   should_parse_to("gto,-42", Gto(-42));
@@ -63,6 +73,21 @@ TEST(InstructionParser, should_parse_jpr)
   should_parse_to("jpr,foo", Jpr("foo"));
 }
 
+TEST(InstructionParser, should_parse_mod)
+{
+  should_parse_to("mod,x=yz", Bop("mod", 'x', 'y', 'z'));
+}
+
+TEST(InstructionParser, should_parse_mul)
+{
+  should_parse_to("mul,x=yz", Bop("mul", 'x', 'y', 'z'));
+}
+
+TEST(InstructionParser, should_parse_pow)
+{
+  should_parse_to("pow,x=yz", Bop("pow", 'x', 'y', 'z'));
+}
+
 TEST(InstructionParser, should_parse_prt)
 {
   should_parse_to("prt", Prt());
@@ -71,6 +96,11 @@ TEST(InstructionParser, should_parse_prt)
 TEST(InstructionParser, should_parse_set)
 {
   should_parse_to("set,1.23", Set(1.23));
+}
+
+TEST(InstructionParser, should_parse_sub)
+{
+  should_parse_to("sub,x=yz", Bop("sub", 'x', 'y', 'z'));
 }
 
 TEST(InstructionParser, should_parse_swp)
