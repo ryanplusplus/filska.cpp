@@ -15,7 +15,7 @@ namespace filska::instruction {
    protected:
     bool equal_to(const Instruction& other) const override
     {
-      return dynamic_cast<Hlt const*>(&other) != nullptr;
+      return dynamic_cast<decltype(this)>(&other) != nullptr;
     }
   };
 }

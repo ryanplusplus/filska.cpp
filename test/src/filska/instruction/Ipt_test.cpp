@@ -10,6 +10,7 @@ using namespace filska::instruction;
 TEST_GROUP(Ipt)
 {
   Program program{};
+  std::stringstream input{};
 
   void setup()
   {
@@ -21,15 +22,16 @@ TEST_GROUP(Ipt)
 
 TEST(Ipt, should_read_float_from_input_and_write_it_to_m)
 {
-  auto input = std::stringstream{"1.23"};
+  input << "1.23";
   auto pc_offset = Ipt().execute(program, input, std::cout);
   CHECK_EQUAL(1, pc_offset);
   DOUBLES_EQUAL(1.23, program.sub_programs["main"].m, 0.001);
+  CHECK_FALSE(program.done);
 }
 
 TEST(Ipt, should_terminate_if_unable_to_read_a_float_from_input)
 {
-  auto input = std::stringstream{"derp"};
+  input << "derp";
   auto pc_offset = Ipt().execute(program, input, std::cout);
   CHECK_EQUAL(1, pc_offset);
   CHECK_TRUE(program.done);

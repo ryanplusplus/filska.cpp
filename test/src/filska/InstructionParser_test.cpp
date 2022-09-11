@@ -1,6 +1,5 @@
 #include "filska/InstructionParser.hpp"
-#include "filska/instruction/Ipt.hpp"
-#include "filska/instruction/Hlt.hpp"
+#include "filska/instruction/all.hpp"
 #include "CppUTest/TestHarness.h"
 #include "CppUTestExt/MockSupport.h"
 
@@ -39,12 +38,17 @@ TEST(InstructionParser, should_throw_if_instruction_is_unknown)
   });
 }
 
+TEST(InstructionParser, should_parse_hlt)
+{
+  should_parse_to("hlt", Hlt());
+}
+
 TEST(InstructionParser, should_parse_ipt)
 {
   should_parse_to("ipt", Ipt());
 }
 
-TEST(InstructionParser, should_parse_hlt)
+TEST(InstructionParser, should_parse_prt)
 {
-  should_parse_to("hlt", Hlt());
+  should_parse_to("prt", Prt());
 }

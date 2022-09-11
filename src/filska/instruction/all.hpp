@@ -3,5 +3,6 @@
 
 #include "filska/instruction/Hlt.hpp"
 #include "filska/instruction/Ipt.hpp"
+#include "filska/instruction/Prt.hpp"
 
 #endif
