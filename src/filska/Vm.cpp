@@ -9,6 +9,6 @@ void Vm::run(Program& program, std::istream& input, std::ostream& output)
     auto& pc = sub_program.pc;
     auto instruction = sub_program.instructions[pc].get();
     auto pc_offset = instruction->execute(program, input, output);
-    pc += pc_offset;
+    pc = (pc + pc_offset) % sub_program.instructions.size();
   }
 }

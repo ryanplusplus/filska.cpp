@@ -8,7 +8,7 @@ using namespace filska::instruction;
 
 TEST_GROUP(Jpr){};
 
-TEST(Jpr, should_jump_and_reset_the_pc)
+TEST(Jpr, should_jump_to_another_sub_program_and_reset_the_pc)
 {
   auto program = Program{};
   program.current_sub_program = "main";

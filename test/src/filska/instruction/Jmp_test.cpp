@@ -8,7 +8,7 @@ using namespace filska::instruction;
 
 TEST_GROUP(Jmp){};
 
-TEST(Jmp, should_jump)
+TEST(Jmp, should_jump_to_another_sub_program)
 {
   auto program = Program{};
   auto pc_offset = Jmp("blah").execute(program, std::cin, std::cout);

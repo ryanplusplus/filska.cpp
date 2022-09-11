@@ -42,3 +42,18 @@ TEST(Vm, should_run_a_simple_program)
   )");
   output_should_contain("42");
 }
+
+TEST(Vm, should_handle_pc_wraparound)
+{
+  given_that_input_contains("7");
+  after_program_runs(R"(
+    { main
+      ipt
+      gto,7
+      hlt
+      prt
+      hlt
+    }
+  )");
+  output_should_contain("7");
+}

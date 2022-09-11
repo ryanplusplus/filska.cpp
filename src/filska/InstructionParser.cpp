@@ -6,7 +6,10 @@ using namespace filska::instruction;
 
 std::unique_ptr<Instruction> InstructionParser::parse(std::string s)
 {
-  if(s == "hlt") {
+  if(s.starts_with("gto")) {
+    return std::make_unique<Gto>(std::stoi(s.substr(4)));
+  }
+  else if(s == "hlt") {
     return std::make_unique<Hlt>();
   }
   else if(s == "ipt") {

@@ -38,6 +38,11 @@ TEST(InstructionParser, should_throw_if_instruction_is_unknown)
   });
 }
 
+TEST(InstructionParser, should_parse_gto)
+{
+  should_parse_to("gto,-42", Gto(-42));
+}
+
 TEST(InstructionParser, should_parse_hlt)
 {
   should_parse_to("hlt", Hlt());
