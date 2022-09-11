@@ -48,6 +48,16 @@ TEST(InstructionParser, should_parse_ipt)
   should_parse_to("ipt", Ipt());
 }
 
+TEST(InstructionParser, should_parse_jmp)
+{
+  should_parse_to("jmp,foo", Jmp("foo"));
+}
+
+TEST(InstructionParser, should_parse_jpr)
+{
+  should_parse_to("jpr,foo", Jpr("foo"));
+}
+
 TEST(InstructionParser, should_parse_prt)
 {
   should_parse_to("prt", Prt());
