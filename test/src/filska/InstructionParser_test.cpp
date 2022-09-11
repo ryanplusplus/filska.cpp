@@ -67,3 +67,33 @@ TEST(InstructionParser, should_parse_prt)
 {
   should_parse_to("prt", Prt());
 }
+
+TEST(InstructionParser, should_parse_tmx)
+{
+  should_parse_to("tmx", Tmx());
+}
+
+TEST(InstructionParser, should_parse_tmy)
+{
+  should_parse_to("tmy", Tmy());
+}
+
+TEST(InstructionParser, should_parse_tmz)
+{
+  should_parse_to("tmz", Tmz());
+}
+
+TEST(InstructionParser, should_parse_txm)
+{
+  should_parse_to("txm", Txm());
+}
+
+TEST(InstructionParser, should_parse_tym)
+{
+  should_parse_to("tym", Tym());
+}
+
+TEST(InstructionParser, should_parse_tzm)
+{
+  should_parse_to("tzm", Tzm());
+}
