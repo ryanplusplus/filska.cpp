@@ -1,3 +1,4 @@
+#include <iostream>
 #include "filska/Filska.hpp"
 #include "filska/Parser.hpp"
 #include "filska/Vm.hpp"
@@ -8,5 +9,5 @@ using namespace filska;
 void filska::Filska::run(string s)
 {
   auto program = Parser::parse(s);
-  Vm::run(program);
+  Vm::run(program, std::cin, std::cout);
 }

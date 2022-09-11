@@ -11,8 +11,7 @@ TEST_GROUP(Hlt){};
 TEST(Hlt, should_terminate_program)
 {
   auto program = Program{};
-  Hlt().execute(program);
+  auto pc_offset = Hlt().execute(program, std::cin, std::cout);
+  CHECK_EQUAL(1, pc_offset);
   CHECK_TRUE(program.done);
-
-  CHECK(Hlt() == Hlt());
 }

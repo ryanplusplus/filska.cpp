@@ -7,17 +7,19 @@
 namespace filska::instruction {
   class Ipt : public filska::Instruction {
    public:
-    void execute(Program& program) override
+    ssize_t execute(Program& program, std::istream& input, std::ostream&) override
     {
-      float input;
-      std::cin >> input;
+      float f;
+      input >> f;
 
-      if(std::cin) {
-        program.sub_programs[program.current_sub_program].m = input;
+      if(input) {
+        program.sub_programs[program.current_sub_program].m = f;
       }
       else {
         program.done = true;
       }
+
+      return 1;
     }
 
    protected:
