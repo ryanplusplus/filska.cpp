@@ -1,0 +1,6 @@
+--quiet
+--ignore ./{build,.xmake}/**/*
+--no-notify
+-c
+-w 1
+-p **/*.{c,cpp,h,hpp}
