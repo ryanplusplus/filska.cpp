@@ -68,6 +68,16 @@ TEST(InstructionParser, should_parse_prt)
   should_parse_to("prt", Prt());
 }
 
+TEST(InstructionParser, should_parse_set)
+{
+  should_parse_to("set,1.23", Set(1.23));
+}
+
+TEST(InstructionParser, should_parse_swp)
+{
+  should_parse_to("swp,xy", Swp('x', 'y'));
+}
+
 TEST(InstructionParser, should_parse_tmx)
 {
   should_parse_to("tmx", Tmx());

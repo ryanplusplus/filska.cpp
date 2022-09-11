@@ -7,6 +7,8 @@
 #include "filska/instruction/Jmp.hpp"
 #include "filska/instruction/Jpr.hpp"
 #include "filska/instruction/Prt.hpp"
+#include "filska/instruction/Set.hpp"
+#include "filska/instruction/Swp.hpp"
 #include "filska/instruction/Tmx.hpp"
 #include "filska/instruction/Tmy.hpp"
 #include "filska/instruction/Tmz.hpp"
