@@ -11,9 +11,10 @@ namespace filska::instruction {
       program.done = true;
     }
 
-    bool operator==(const Hlt&) const
+   protected:
+    bool equal_to(const Instruction& other) const override
     {
-      return true;
+      return dynamic_cast<Hlt const*>(&other) != nullptr;
     }
   };
 }

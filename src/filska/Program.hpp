@@ -15,7 +15,9 @@ namespace filska {
 
     std::map<std::string, SubProgram> sub_programs{};
 
-    SubProgram* current_sub_program{};
+    std::string current_sub_program{};
+
+    bool operator==(const Program& other) const = default;
   };
 }
 #endif

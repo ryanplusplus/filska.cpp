@@ -13,16 +13,17 @@ namespace filska::instruction {
       std::cin >> input;
 
       if(std::cin) {
-        program.current_sub_program->m = input;
+        program.sub_programs[program.current_sub_program].m = input;
       }
       else {
         program.done = true;
       }
     }
 
-    bool operator==(const Ipt&) const
+   protected:
+    bool equal_to(const Instruction& other) const override
     {
-      return true;
+      return dynamic_cast<Ipt const*>(&other) != nullptr;
     }
   };
 }

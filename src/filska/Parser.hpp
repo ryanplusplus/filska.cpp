@@ -5,10 +5,10 @@
 #include "filska/Program.hpp"
 
 namespace filska {
-class Parser {
- public:
-  static Program parse(std::string);
-};
+  class Parser {
+   public:
+    static Program parse(std::string);
+  };
 }
 
 #endif

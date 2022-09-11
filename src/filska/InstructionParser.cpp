@@ -1,6 +1,5 @@
 #include "filska/InstructionParser.hpp"
-#include "filska/instruction/Ipt.hpp"
-#include "filska/instruction/Hlt.hpp"
+#include "filska/instruction/all.hpp"
 
 using namespace filska;
 using namespace filska::instruction;

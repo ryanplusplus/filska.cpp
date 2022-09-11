@@ -15,9 +15,7 @@ TEST_GROUP(InstructionParser)
   void should_parse_to(std::string && s, T && expected)
   {
     auto instruction = InstructionParser::parse(s);
-    auto instruction_pointer = dynamic_cast<T*>(instruction.get());
-    CHECK(instruction_pointer != nullptr);
-    CHECK(*instruction_pointer == expected);
+    CHECK(*instruction.get() == expected);
   }
 
   template <typename T, typename F>

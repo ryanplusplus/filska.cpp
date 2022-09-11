@@ -1,4 +1,4 @@
-set_languages('c++17')
+set_languages('c++20')
 
 add_requires('conan::cpputest/4.0', { alias = 'cpputest' })
 
