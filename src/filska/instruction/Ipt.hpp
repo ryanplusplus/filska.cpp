@@ -19,6 +19,11 @@ namespace filska::instruction {
         program.done = true;
       }
     }
+
+    bool operator==(const Ipt&) const
+    {
+      return true;
+    }
   };
 }
 

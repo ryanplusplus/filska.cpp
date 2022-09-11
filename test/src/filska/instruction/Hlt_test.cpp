@@ -13,4 +13,6 @@ TEST(Hlt, should_terminate_program)
   auto program = Program{};
   Hlt().execute(program);
   CHECK_TRUE(program.done);
+
+  CHECK(Hlt() == Hlt());
 }

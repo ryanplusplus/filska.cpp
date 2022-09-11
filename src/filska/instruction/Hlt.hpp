@@ -10,6 +10,11 @@ namespace filska::instruction {
     {
       program.done = true;
     }
+
+    bool operator==(const Hlt&) const
+    {
+      return true;
+    }
   };
 }
 

@@ -1,9 +1,52 @@
 #include "filska/InstructionParser.hpp"
+#include "filska/instruction/Ipt.hpp"
+#include "filska/instruction/Hlt.hpp"
 #include "CppUTest/TestHarness.h"
 #include "CppUTestExt/MockSupport.h"
 
-TEST_GROUP(InstructionParser){};
+using namespace filska;
+using namespace filska::instruction;
 
-TEST(InstructionParser, dummy_test)
+TEST_GROUP(InstructionParser)
 {
+  int dummy;
+
+  template <typename T>
+  void should_parse_to(std::string && s, T && expected)
+  {
+    auto instruction = InstructionParser::parse(s);
+    auto instruction_pointer = dynamic_cast<T*>(instruction.get());
+    CHECK(instruction_pointer != nullptr);
+    CHECK(*instruction_pointer == expected);
+  }
+
+  template <typename T, typename F>
+  void should_throw(F thunk)
+  {
+    try {
+      thunk();
+    }
+    catch(T& e) {
+      return;
+    }
+
+    FAIL("Didn't throw");
+  }
+};
+
+TEST(InstructionParser, should_throw_if_instruction_is_unknown)
+{
+  should_throw<std::invalid_argument>([] {
+    InstructionParser::parse("derp");
+  });
+}
+
+TEST(InstructionParser, should_parse_ipt)
+{
+  should_parse_to("ipt", Ipt());
+}
+
+TEST(InstructionParser, should_parse_hlt)
+{
+  should_parse_to("hlt", Hlt());
 }
