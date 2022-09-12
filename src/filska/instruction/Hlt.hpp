@@ -6,10 +6,9 @@
 namespace filska::instruction {
   class Hlt : public filska::Instruction {
    public:
-    ssize_t execute(Program& program, std::istream&, std::ostream&) override
+    void execute(State& state, std::istream&, std::ostream&) override
     {
-      program.done = true;
-      return 1;
+      state.done = true;
     }
 
    protected:

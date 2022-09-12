@@ -1,5 +1,5 @@
 #include "filska/instruction/Bop.hpp"
-#include "filska/Program.hpp"
+#include "double/InstructionState.hpp"
 #include "CppUTest/TestHarness.h"
 #include "CppUTestExt/MockSupport.h"
 
@@ -8,84 +8,77 @@ using namespace filska::instruction;
 
 TEST_GROUP(Bop)
 {
-  Program program{};
-
-  void setup()
-  {
-    program.current_sub_program = "main";
-    auto main = SubProgram{};
-    program.sub_programs["main"] = std::move(main);
-  }
+  InstructionState state{};
 };
 
 TEST(Bop, should_add)
 {
-  program.sub_programs["main"].m = 7;
-  program.x = 2;
+  state.m = 7;
+  state.x = 2;
 
-  auto pc_offset = Bop("add", 'y', 'x', 'm').execute(program, std::cin, std::cout);
-  CHECK_EQUAL(1, pc_offset);
-  CHECK_EQUAL(2, program.x);
-  CHECK_EQUAL(9, program.y);
-  CHECK_EQUAL(7, program.sub_programs["main"].m);
+  Bop("add", 'y', 'x', 'm').execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(1, state.pc);
+  CHECK_EQUAL(2, state.x);
+  CHECK_EQUAL(9, state.y);
+  CHECK_EQUAL(7, state.m);
 }
 
 TEST(Bop, should_sub)
 {
-  program.sub_programs["main"].m = 7;
-  program.x = 2;
+  state.m = 7;
+  state.x = 2;
 
-  auto pc_offset = Bop("sub", 'y', 'x', 'm').execute(program, std::cin, std::cout);
-  CHECK_EQUAL(1, pc_offset);
-  CHECK_EQUAL(2, program.x);
-  CHECK_EQUAL(-5, program.y);
-  CHECK_EQUAL(7, program.sub_programs["main"].m);
+  Bop("sub", 'y', 'x', 'm').execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(1, state.pc);
+  CHECK_EQUAL(2, state.x);
+  CHECK_EQUAL(-5, state.y);
+  CHECK_EQUAL(7, state.m);
 }
 
 TEST(Bop, should_mul)
 {
-  program.sub_programs["main"].m = 7;
-  program.x = 2;
+  state.m = 7;
+  state.x = 2;
 
-  auto pc_offset = Bop("mul", 'y', 'x', 'm').execute(program, std::cin, std::cout);
-  CHECK_EQUAL(1, pc_offset);
-  CHECK_EQUAL(2, program.x);
-  CHECK_EQUAL(14, program.y);
-  CHECK_EQUAL(7, program.sub_programs["main"].m);
+  Bop("mul", 'y', 'x', 'm').execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(1, state.pc);
+  CHECK_EQUAL(2, state.x);
+  CHECK_EQUAL(14, state.y);
+  CHECK_EQUAL(7, state.m);
 }
 
 TEST(Bop, should_div)
 {
-  program.sub_programs["main"].m = 7;
-  program.x = 2;
+  state.m = 7;
+  state.x = 2;
 
-  auto pc_offset = Bop("div", 'y', 'x', 'm').execute(program, std::cin, std::cout);
-  CHECK_EQUAL(1, pc_offset);
-  CHECK_EQUAL(2, program.x);
-  DOUBLES_EQUAL(2.0 / 7, program.y, 0.0001);
-  CHECK_EQUAL(7, program.sub_programs["main"].m);
+  Bop("div", 'y', 'x', 'm').execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(1, state.pc);
+  CHECK_EQUAL(2, state.x);
+  DOUBLES_EQUAL(2.0 / 7, state.y, 0.0001);
+  CHECK_EQUAL(7, state.m);
 }
 
 TEST(Bop, should_mod)
 {
-  program.sub_programs["main"].m = 7;
-  program.x = 9;
+  state.m = 7;
+  state.x = 9;
 
-  auto pc_offset = Bop("mod", 'y', 'x', 'm').execute(program, std::cin, std::cout);
-  CHECK_EQUAL(1, pc_offset);
-  CHECK_EQUAL(9, program.x);
-  CHECK_EQUAL(2, program.y);
-  CHECK_EQUAL(7, program.sub_programs["main"].m);
+  Bop("mod", 'y', 'x', 'm').execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(1, state.pc);
+  CHECK_EQUAL(9, state.x);
+  CHECK_EQUAL(2, state.y);
+  CHECK_EQUAL(7, state.m);
 }
 
 TEST(Bop, should_pow)
 {
-  program.x = 2;
-  program.y = 4;
+  state.x = 2;
+  state.y = 4;
 
-  auto pc_offset = Bop("pow", 'z', 'x', 'y').execute(program, std::cin, std::cout);
-  CHECK_EQUAL(1, pc_offset);
-  CHECK_EQUAL(2, program.x);
-  CHECK_EQUAL(4, program.y);
-  CHECK_EQUAL(16, program.z);
+  Bop("pow", 'z', 'x', 'y').execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(1, state.pc);
+  CHECK_EQUAL(2, state.x);
+  CHECK_EQUAL(4, state.y);
+  CHECK_EQUAL(16, state.z);
 }

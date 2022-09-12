@@ -1,5 +1,5 @@
 #include "filska/instruction/Swp.hpp"
-#include "filska/Program.hpp"
+#include "double/InstructionState.hpp"
 #include "CppUTest/TestHarness.h"
 #include "CppUTestExt/MockSupport.h"
 
@@ -8,72 +8,52 @@ using namespace filska::instruction;
 
 TEST_GROUP(Swp)
 {
-  Program program{};
-
-  void setup()
-  {
-    program.current_sub_program = "main";
-    auto main = SubProgram{};
-    program.sub_programs["main"] = std::move(main);
-  }
+  InstructionState state{};
 };
 
 TEST(Swp, should_increment_pc)
 {
-  program.sub_programs["main"].m = 7;
-
-  auto pc_offset = Swp('x', 'y').execute(program, std::cin, std::cout);
-  CHECK_EQUAL(1, pc_offset);
+  state.m = 7;
+  Swp('x', 'y').execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(1, state.pc);
 }
 
 TEST(Swp, should_swap_x)
 {
-  auto& m = program.sub_programs["main"].m;
-  auto& x = program.x;
+  state.m = 11;
+  state.x = 7;
 
-  m = 11;
-  x = 7;
-
-  Swp('x', 'm').execute(program, std::cin, std::cout);
-  CHECK_EQUAL(11, x);
-  CHECK_EQUAL(7, m);
+  Swp('x', 'm').execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(11, state.x);
+  CHECK_EQUAL(7, state.m);
 }
 
 TEST(Swp, should_swap_y)
 {
-  auto& m = program.sub_programs["main"].m;
-  auto& y = program.y;
+  state.m = 11;
+  state.y = 7;
 
-  m = 11;
-  y = 7;
-
-  Swp('y', 'm').execute(program, std::cin, std::cout);
-  CHECK_EQUAL(11, y);
-  CHECK_EQUAL(7, m);
+  Swp('y', 'm').execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(11, state.y);
+  CHECK_EQUAL(7, state.m);
 }
 
 TEST(Swp, should_swap_z)
 {
-  auto& m = program.sub_programs["main"].m;
-  auto& z = program.z;
+  state.m = 11;
+  state.z = 7;
 
-  m = 11;
-  z = 7;
-
-  Swp('z', 'm').execute(program, std::cin, std::cout);
-  CHECK_EQUAL(11, z);
-  CHECK_EQUAL(7, m);
+  Swp('z', 'm').execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(11, state.z);
+  CHECK_EQUAL(7, state.m);
 }
 
 TEST(Swp, should_swap_m)
 {
-  auto& m = program.sub_programs["main"].m;
-  auto& x = program.x;
+  state.m = 11;
+  state.x = 7;
 
-  m = 11;
-  x = 7;
-
-  Swp('m', 'x').execute(program, std::cin, std::cout);
-  CHECK_EQUAL(7, m);
-  CHECK_EQUAL(11, x);
+  Swp('m', 'x').execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(7, state.m);
+  CHECK_EQUAL(11, state.x);
 }

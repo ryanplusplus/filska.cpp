@@ -6,11 +6,10 @@
 namespace filska::instruction {
   class Tmz : public filska::Instruction {
    public:
-    ssize_t execute(Program& program, std::istream&, std::ostream&) override
+    void execute(State& state, std::istream&, std::ostream&) override
     {
-      auto& sub_program = program.sub_programs[program.current_sub_program];
-      program.z = sub_program.m;
-      return 1;
+      state.z = state.m;
+      state.pc += 1;
     }
 
    protected:

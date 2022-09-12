@@ -9,8 +9,23 @@ namespace filska {
 
   class Instruction {
    public:
+    struct State {
+      float& x;
+      float& y;
+      float& z;
+
+      float& m;
+
+      size_t& pc;
+
+      bool& done;
+
+      std::string& current_sub_program;
+    };
+
+   public:
     virtual ~Instruction(){};
-    virtual ssize_t execute(filska::Program& program, std::istream& input, std::ostream& output) = 0;
+    virtual void execute(State& state, std::istream& input, std::ostream& output) = 0;
 
     friend bool operator==(const Instruction& lhs, const Instruction& rhs)
     {
@@ -19,6 +34,24 @@ namespace filska {
 
    protected:
     virtual bool equal_to(const Instruction& other) const = 0;
+
+    float& value_for_char(char which, State& state)
+    {
+      switch(which) {
+        case 'x':
+          return state.x;
+
+        case 'y':
+          return state.y;
+
+        case 'z':
+          return state.z;
+
+        default:
+        case 'm':
+          return state.m;
+      }
+    }
   };
 }
 

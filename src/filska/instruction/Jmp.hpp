@@ -11,10 +11,10 @@ namespace filska::instruction {
     {
     }
 
-    ssize_t execute(Program& program, std::istream&, std::ostream&) override
+    void execute(State& state, std::istream&, std::ostream&) override
     {
-      program.current_sub_program = target;
-      return 1;
+      state.current_sub_program = target;
+      state.pc += 1;
     }
 
    protected:

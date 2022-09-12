@@ -1,17 +1,19 @@
 #include "filska/instruction/Jmp.hpp"
-#include "filska/Program.hpp"
+#include "double/InstructionState.hpp"
 #include "CppUTest/TestHarness.h"
 #include "CppUTestExt/MockSupport.h"
 
 using namespace filska;
 using namespace filska::instruction;
 
-TEST_GROUP(Jmp){};
+TEST_GROUP(Jmp)
+{
+  InstructionState state{};
+};
 
 TEST(Jmp, should_jump_to_another_sub_program)
 {
-  auto program = Program{};
-  auto pc_offset = Jmp("blah").execute(program, std::cin, std::cout);
-  CHECK_EQUAL(1, pc_offset);
-  CHECK_TRUE(program.current_sub_program == "blah");
+  Jmp("blah").execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(1, state.pc);
+  CHECK_TRUE(state.current_sub_program == "blah");
 }

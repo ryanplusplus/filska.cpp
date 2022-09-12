@@ -11,18 +11,16 @@ namespace filska::instruction {
     {
     }
 
-    ssize_t execute(Program& program, std::istream&, std::ostream&) override
+    void execute(State& state, std::istream&, std::ostream&) override
     {
-      auto& sub_program = program.sub_programs[program.current_sub_program];
-
-      auto& _a = value(a, program, sub_program);
-      auto& _b = value(b, program, sub_program);
+      auto& _a = value_for_char(a, state);
+      auto& _b = value_for_char(b, state);
 
       auto temp = _a;
       _a = _b;
       _b = temp;
 
-      return 1;
+      state.pc += 1;
     }
 
    protected:
@@ -35,24 +33,6 @@ namespace filska::instruction {
     }
 
    private:
-    float& value(char which, Program& program, SubProgram& sub_program)
-    {
-      switch(which) {
-        case 'x':
-          return program.x;
-
-        case 'y':
-          return program.y;
-
-        case 'z':
-          return program.z;
-
-        default:
-        case 'm':
-          return sub_program.m;
-      }
-    }
-
     char a;
     char b;
   };

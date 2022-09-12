@@ -8,18 +8,16 @@
 namespace filska::instruction {
   class Prt : public filska::Instruction {
    public:
-    ssize_t execute(Program& program, std::istream&, std::ostream& output) override
+    void execute(State& state, std::istream&, std::ostream& output) override
     {
-      auto m = program.sub_programs[program.current_sub_program].m;
-
-      if(std::floor(m) == m) {
-        output << static_cast<int>(m);
+      if(std::floor(state.m) == state.m) {
+        output << static_cast<int>(state.m);
       }
       else {
-        output << m;
+        output << state.m;
       }
 
-      return 1;
+      state.pc += 1;
     }
 
    protected:

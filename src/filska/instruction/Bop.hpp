@@ -12,13 +12,11 @@ namespace filska::instruction {
     {
     }
 
-    ssize_t execute(Program& program, std::istream&, std::ostream&) override
+    void execute(State& state, std::istream&, std::ostream&) override
     {
-      auto& sub_program = program.sub_programs[program.current_sub_program];
-
-      auto& _result = value(result, program, sub_program);
-      auto& _op1 = value(op1, program, sub_program);
-      auto& _op2 = value(op2, program, sub_program);
+      auto& _result = value_for_char(result, state);
+      auto& _op1 = value_for_char(op1, state);
+      auto& _op2 = value_for_char(op2, state);
 
       if(op == "add") {
         _result = _op1 + _op2;
@@ -39,7 +37,7 @@ namespace filska::instruction {
         _result = static_cast<float>(pow(_op1, _op2));
       }
 
-      return 1;
+      state.pc += 1;
     }
 
    protected:
@@ -56,24 +54,6 @@ namespace filska::instruction {
     }
 
    private:
-    float& value(char which, Program& program, SubProgram& sub_program)
-    {
-      switch(which) {
-        case 'x':
-          return program.x;
-
-        case 'y':
-          return program.y;
-
-        case 'z':
-          return program.z;
-
-        default:
-        case 'm':
-          return sub_program.m;
-      }
-    }
-
     std::string op;
     char result;
     char op1;

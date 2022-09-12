@@ -1,5 +1,5 @@
 #include "filska/instruction/Tmy.hpp"
-#include "filska/Program.hpp"
+#include "double/InstructionState.hpp"
 #include "CppUTest/TestHarness.h"
 #include "CppUTestExt/MockSupport.h"
 
@@ -8,22 +8,15 @@ using namespace filska::instruction;
 
 TEST_GROUP(Tmy)
 {
-  Program program{};
-
-  void setup()
-  {
-    program.current_sub_program = "main";
-    auto main = SubProgram{};
-    program.sub_programs["main"] = std::move(main);
-  }
+  InstructionState state{};
 };
 
 TEST(Tmy, should_transfer_m_to_y)
 {
-  program.sub_programs["main"].m = 7;
+  state.m = 7;
 
-  auto pc_offset = Tmy().execute(program, std::cin, std::cout);
-  CHECK_EQUAL(1, pc_offset);
-  CHECK_EQUAL(7, program.y);
-  CHECK_EQUAL(7, program.sub_programs["main"].m);
+  Tmy().execute(state.state, std::cin, std::cout);
+  CHECK_EQUAL(1, state.pc);
+  CHECK_EQUAL(7, state.y);
+  CHECK_EQUAL(7, state.m);
 }

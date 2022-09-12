@@ -11,9 +11,9 @@ namespace filska::instruction {
     {
     }
 
-    ssize_t execute(Program&, std::istream&, std::ostream&) override
+    void execute(State& state, std::istream&, std::ostream&) override
     {
-      return offset;
+      state.pc += offset;
     }
 
    protected:

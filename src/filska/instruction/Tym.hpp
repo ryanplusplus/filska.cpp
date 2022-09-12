@@ -6,11 +6,10 @@
 namespace filska::instruction {
   class Tym : public filska::Instruction {
    public:
-    ssize_t execute(Program& program, std::istream&, std::ostream&) override
+    void execute(State& state, std::istream&, std::ostream&) override
     {
-      auto& sub_program = program.sub_programs[program.current_sub_program];
-      sub_program.m = program.y;
-      return 1;
+      state.m = state.y;
+      state.pc += 1;
     }
 
    protected:
