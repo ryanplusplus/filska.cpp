@@ -11,12 +11,12 @@ namespace filska::instruction {
     {
     }
 
-    void execute(State& state, std::istream&, std::ostream&) override
+   protected:
+    void _execute(State& state, std::istream&, std::ostream&) override
     {
       state.reg.pc += offset;
     }
 
-   protected:
     bool equal_to(const Instruction& other) const override
     {
       if(auto _other = dynamic_cast<decltype(this)>(&other)) {

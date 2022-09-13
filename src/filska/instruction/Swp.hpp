@@ -11,7 +11,8 @@ namespace filska::instruction {
     {
     }
 
-    void execute(State& state, std::istream&, std::ostream&) override
+   protected:
+    void _execute(State& state, std::istream&, std::ostream&) override
     {
       auto& _a = reg_for_char(a, state);
       auto& _b = reg_for_char(b, state);
@@ -23,7 +24,6 @@ namespace filska::instruction {
       state.reg.pc += 1;
     }
 
-   protected:
     bool equal_to(const Instruction& other) const override
     {
       if(auto _other = dynamic_cast<decltype(this)>(&other)) {

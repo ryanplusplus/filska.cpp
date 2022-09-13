@@ -5,13 +5,12 @@
 
 namespace filska::instruction {
   class Hlt : public filska::Instruction {
-   public:
-    void execute(State& state, std::istream&, std::ostream&) override
+   protected:
+    void _execute(State& state, std::istream&, std::ostream&) override
     {
       state.done = true;
     }
 
-   protected:
     bool equal_to(const Instruction& other) const override
     {
       return dynamic_cast<decltype(this)>(&other) != nullptr;

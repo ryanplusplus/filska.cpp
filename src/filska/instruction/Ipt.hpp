@@ -5,8 +5,8 @@
 
 namespace filska::instruction {
   class Ipt : public filska::Instruction {
-   public:
-    void execute(State& state, std::istream& input, std::ostream&) override
+   protected:
+    void _execute(State& state, std::istream& input, std::ostream&) override
     {
       float f;
       input >> f;
@@ -20,7 +20,6 @@ namespace filska::instruction {
       }
     }
 
-   protected:
     bool equal_to(const Instruction& other) const override
     {
       return dynamic_cast<decltype(this)>(&other) != nullptr;

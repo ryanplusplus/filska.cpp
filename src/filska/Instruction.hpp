@@ -34,7 +34,11 @@ namespace filska {
 
    public:
     virtual ~Instruction(){};
-    virtual void execute(State& state, std::istream& input, std::ostream& output) = 0;
+    virtual void execute(State& state, std::istream& input, std::ostream& output)
+    {
+      _execute(state, input, output);
+      state.flag.z = (state.reg.m == 0);
+    };
 
     friend bool operator==(const Instruction& lhs, const Instruction& rhs)
     {
@@ -43,6 +47,7 @@ namespace filska {
 
    protected:
     virtual bool equal_to(const Instruction& other) const = 0;
+    virtual void _execute(State& state, std::istream& input, std::ostream& output) = 0;
 
     double& reg_for_char(char which, State& state)
     {
@@ -85,7 +90,6 @@ namespace filska {
       state.flag.l = (state.reg.m < value);
       state.flag.g = (state.reg.m > value);
       state.flag.e = (state.reg.m == value);
-      state.flag.z = (state.reg.m == 0);
     }
   };
 }
