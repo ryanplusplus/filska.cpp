@@ -15,16 +15,16 @@ TEST_GROUP(Prt)
 
 TEST(Prt, should_print_integers_as_integers)
 {
-  state.m = -7;
+  state.reg.m = -7;
   Prt().execute(state.state, std::cin, output);
-  CHECK_EQUAL(1, state.pc);
+  CHECK_EQUAL(1, state.reg.pc);
   CHECK(output.str() == "-7");
 }
 
 TEST(Prt, should_print_floats_as_floats)
 {
-  state.m = 1.234;
+  state.reg.m = 1.234;
   Prt().execute(state.state, std::cin, output);
-  CHECK_EQUAL(1, state.pc);
+  CHECK_EQUAL(1, state.reg.pc);
   CHECK(output.str() == "1.234");
 }

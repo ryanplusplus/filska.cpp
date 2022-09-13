@@ -2,22 +2,21 @@
 #define filska_instruction_Prt_hpp
 
 #include <cmath>
-#include <iostream>
-#include "filska/Program.hpp"
+#include "filska/Instruction.hpp"
 
 namespace filska::instruction {
   class Prt : public filska::Instruction {
    public:
     void execute(State& state, std::istream&, std::ostream& output) override
     {
-      if(std::floor(state.m) == state.m) {
-        output << static_cast<int>(state.m);
+      if(std::floor(state.reg.m) == state.reg.m) {
+        output << static_cast<int>(state.reg.m);
       }
       else {
-        output << state.m;
+        output << state.reg.m;
       }
 
-      state.pc += 1;
+      state.reg.pc += 1;
     }
 
    protected:

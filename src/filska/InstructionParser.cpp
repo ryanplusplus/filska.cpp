@@ -14,6 +14,9 @@ std::unique_ptr<Instruction> InstructionParser::parse(std::string s)
     s.starts_with("pow")) {
     return std::make_unique<Bop>(s.substr(0, 3), s[4], s[6], s[7]);
   }
+  else if(s.starts_with("cmp")) {
+    return std::make_unique<Cmp>(s[4]);
+  }
   else if(s.starts_with("gto")) {
     return std::make_unique<Gto>(std::stol(s.substr(4)));
   }
@@ -46,6 +49,9 @@ std::unique_ptr<Instruction> InstructionParser::parse(std::string s)
   }
   else if(s == "tmz") {
     return std::make_unique<Tmz>();
+  }
+  else if(s.starts_with("tst")) {
+    return std::make_unique<Tst>(s[4], std::stol(s.substr(6)));
   }
   else if(s == "txm") {
     return std::make_unique<Txm>();

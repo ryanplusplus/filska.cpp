@@ -10,13 +10,22 @@ namespace filska {
   class Instruction {
    public:
     struct State {
-      float& x;
-      float& y;
-      float& z;
+      struct {
+        double& x;
+        double& y;
+        double& z;
 
-      float& m;
+        double& m;
 
-      size_t& pc;
+        size_t& pc;
+      } reg;
+
+      struct {
+        bool& l;
+        bool& g;
+        bool& e;
+        bool& z;
+      } flag;
 
       bool& done;
 
@@ -35,22 +44,48 @@ namespace filska {
    protected:
     virtual bool equal_to(const Instruction& other) const = 0;
 
-    float& value_for_char(char which, State& state)
+    double& reg_for_char(char which, State& state)
     {
       switch(which) {
         case 'x':
-          return state.x;
+          return state.reg.x;
 
         case 'y':
-          return state.y;
+          return state.reg.y;
 
         case 'z':
-          return state.z;
+          return state.reg.z;
 
         default:
         case 'm':
-          return state.m;
+          return state.reg.m;
       }
+    }
+
+    bool& flag_for_char(char which, State& state)
+    {
+      switch(which) {
+        case 'l':
+          return state.flag.l;
+
+        case 'g':
+          return state.flag.g;
+
+        case 'e':
+          return state.flag.e;
+
+        default:
+        case 'z':
+          return state.flag.z;
+      }
+    }
+
+    void update_flags(double value, State& state)
+    {
+      state.flag.l = (state.reg.m < value);
+      state.flag.g = (state.reg.m > value);
+      state.flag.e = (state.reg.m == value);
+      state.flag.z = (state.reg.m == 0);
     }
   };
 }

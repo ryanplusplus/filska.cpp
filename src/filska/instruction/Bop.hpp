@@ -2,7 +2,7 @@
 #define filska_instruction_Bop_hpp
 
 #include <cmath>
-#include "filska/Program.hpp"
+#include "filska/Instruction.hpp"
 
 namespace filska::instruction {
   class Bop : public filska::Instruction {
@@ -14,9 +14,9 @@ namespace filska::instruction {
 
     void execute(State& state, std::istream&, std::ostream&) override
     {
-      auto& _result = value_for_char(result, state);
-      auto& _op1 = value_for_char(op1, state);
-      auto& _op2 = value_for_char(op2, state);
+      auto& _result = reg_for_char(result, state);
+      auto& _op1 = reg_for_char(op1, state);
+      auto& _op2 = reg_for_char(op2, state);
 
       if(op == "add") {
         _result = _op1 + _op2;
@@ -37,7 +37,7 @@ namespace filska::instruction {
         _result = static_cast<float>(pow(_op1, _op2));
       }
 
-      state.pc += 1;
+      state.reg.pc += 1;
     }
 
    protected:

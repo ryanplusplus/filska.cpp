@@ -13,10 +13,10 @@ TEST_GROUP(Tym)
 
 TEST(Tym, should_transfer_y_to_m)
 {
-  state.y = 7;
+  state.reg.y = 7;
 
   Tym().execute(state.state, std::cin, std::cout);
-  CHECK_EQUAL(1, state.pc);
-  CHECK_EQUAL(7, state.y);
-  CHECK_EQUAL(7, state.m);
+  CHECK_EQUAL(1, state.reg.pc);
+  CHECK_EQUAL(7, state.reg.y);
+  CHECK_EQUAL(7, state.reg.m);
 }

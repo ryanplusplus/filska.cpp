@@ -1,7 +1,7 @@
 #ifndef filska_instruction_Hlt_hpp
 #define filska_instruction_Hlt_hpp
 
-#include "filska/Program.hpp"
+#include "filska/Instruction.hpp"
 
 namespace filska::instruction {
   class Hlt : public filska::Instruction {

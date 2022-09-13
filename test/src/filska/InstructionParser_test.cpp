@@ -43,6 +43,11 @@ TEST(InstructionParser, should_parse_add)
   should_parse_to("add,x=yz", Bop("add", 'x', 'y', 'z'));
 }
 
+TEST(InstructionParser, should_parse_cmp)
+{
+  should_parse_to("cmp,x", Cmp('x'));
+}
+
 TEST(InstructionParser, should_parse_div)
 {
   should_parse_to("div,x=yz", Bop("div", 'x', 'y', 'z'));
@@ -121,6 +126,11 @@ TEST(InstructionParser, should_parse_tmy)
 TEST(InstructionParser, should_parse_tmz)
 {
   should_parse_to("tmz", Tmz());
+}
+
+TEST(InstructionParser, should_parse_tst)
+{
+  should_parse_to("tst,z,-5", Tst('z', -5));
 }
 
 TEST(InstructionParser, should_parse_txm)

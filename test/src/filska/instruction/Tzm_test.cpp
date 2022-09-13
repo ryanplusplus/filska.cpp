@@ -13,10 +13,10 @@ TEST_GROUP(Tzm)
 
 TEST(Tzm, should_transfer_z_to_m)
 {
-  state.z = 7;
+  state.reg.z = 7;
 
   Tzm().execute(state.state, std::cin, std::cout);
-  CHECK_EQUAL(1, state.pc);
-  CHECK_EQUAL(7, state.z);
-  CHECK_EQUAL(7, state.m);
+  CHECK_EQUAL(1, state.reg.pc);
+  CHECK_EQUAL(7, state.reg.z);
+  CHECK_EQUAL(7, state.reg.m);
 }

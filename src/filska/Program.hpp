@@ -7,9 +7,9 @@
 
 namespace filska {
   struct Program {
-    float x{};
-    float y{};
-    float z{};
+    double x{};
+    double y{};
+    double z{};
 
     bool done{};
 

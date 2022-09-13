@@ -1,7 +1,7 @@
 #ifndef filska_instruction_Gto_hpp
 #define filska_instruction_Gto_hpp
 
-#include "filska/Program.hpp"
+#include "filska/Instruction.hpp"
 
 namespace filska::instruction {
   class Gto : public filska::Instruction {
@@ -13,7 +13,7 @@ namespace filska::instruction {
 
     void execute(State& state, std::istream&, std::ostream&) override
     {
-      state.pc += offset;
+      state.reg.pc += offset;
     }
 
    protected:

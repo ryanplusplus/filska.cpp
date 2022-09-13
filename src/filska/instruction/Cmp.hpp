@@ -1,19 +1,19 @@
-#ifndef filska_instruction_Jmp_hpp
-#define filska_instruction_Jmp_hpp
+#ifndef filska_instruction_Cmp_hpp
+#define filska_instruction_Cmp_hpp
 
 #include "filska/Instruction.hpp"
 
 namespace filska::instruction {
-  class Jmp : public filska::Instruction {
+  class Cmp : public filska::Instruction {
    public:
-    Jmp(std::string target)
-      : target{target}
+    Cmp(char reg)
+      : reg{reg}
     {
     }
 
     void execute(State& state, std::istream&, std::ostream&) override
     {
-      state.current_sub_program = target;
+      update_flags(reg_for_char(reg, state), state);
       state.reg.pc += 1;
     }
 
@@ -21,13 +21,13 @@ namespace filska::instruction {
     bool equal_to(const Instruction& other) const override
     {
       if(auto _other = dynamic_cast<decltype(this)>(&other)) {
-        return this->target == _other->target;
+        return this->reg == _other->reg;
       }
       return false;
     }
 
    private:
-    std::string target;
+    char reg;
   };
 }
 

@@ -13,8 +13,8 @@ TEST_GROUP(Jpr)
 
 TEST(Jpr, should_jump_to_another_sub_program_and_reset_the_pc)
 {
-  state.pc = 123;
+  state.reg.pc = 123;
   Jpr("blah").execute(state.state, std::cin, std::cout);
-  CHECK_EQUAL(0, state.pc);
+  CHECK_EQUAL(0, state.reg.pc);
   CHECK_TRUE(state.current_sub_program == "blah");
 }

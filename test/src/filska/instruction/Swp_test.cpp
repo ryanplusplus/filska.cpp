@@ -13,47 +13,47 @@ TEST_GROUP(Swp)
 
 TEST(Swp, should_increment_pc)
 {
-  state.m = 7;
+  state.reg.m = 7;
   Swp('x', 'y').execute(state.state, std::cin, std::cout);
-  CHECK_EQUAL(1, state.pc);
+  CHECK_EQUAL(1, state.reg.pc);
 }
 
 TEST(Swp, should_swap_x)
 {
-  state.m = 11;
-  state.x = 7;
+  state.reg.m = 11;
+  state.reg.x = 7;
 
   Swp('x', 'm').execute(state.state, std::cin, std::cout);
-  CHECK_EQUAL(11, state.x);
-  CHECK_EQUAL(7, state.m);
+  CHECK_EQUAL(11, state.reg.x);
+  CHECK_EQUAL(7, state.reg.m);
 }
 
 TEST(Swp, should_swap_y)
 {
-  state.m = 11;
-  state.y = 7;
+  state.reg.m = 11;
+  state.reg.y = 7;
 
   Swp('y', 'm').execute(state.state, std::cin, std::cout);
-  CHECK_EQUAL(11, state.y);
-  CHECK_EQUAL(7, state.m);
+  CHECK_EQUAL(11, state.reg.y);
+  CHECK_EQUAL(7, state.reg.m);
 }
 
 TEST(Swp, should_swap_z)
 {
-  state.m = 11;
-  state.z = 7;
+  state.reg.m = 11;
+  state.reg.z = 7;
 
   Swp('z', 'm').execute(state.state, std::cin, std::cout);
-  CHECK_EQUAL(11, state.z);
-  CHECK_EQUAL(7, state.m);
+  CHECK_EQUAL(11, state.reg.z);
+  CHECK_EQUAL(7, state.reg.m);
 }
 
 TEST(Swp, should_swap_m)
 {
-  state.m = 11;
-  state.x = 7;
+  state.reg.m = 11;
+  state.reg.x = 7;
 
   Swp('m', 'x').execute(state.state, std::cin, std::cout);
-  CHECK_EQUAL(7, state.m);
-  CHECK_EQUAL(11, state.x);
+  CHECK_EQUAL(7, state.reg.m);
+  CHECK_EQUAL(11, state.reg.x);
 }

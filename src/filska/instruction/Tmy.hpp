@@ -1,15 +1,15 @@
 #ifndef filska_instruction_Tmy_hpp
 #define filska_instruction_Tmy_hpp
 
-#include "filska/Program.hpp"
+#include "filska/Instruction.hpp"
 
 namespace filska::instruction {
   class Tmy : public filska::Instruction {
    public:
     void execute(State& state, std::istream&, std::ostream&) override
     {
-      state.y = state.m;
-      state.pc += 1;
+      state.reg.y = state.reg.m;
+      state.reg.pc += 1;
     }
 
    protected:

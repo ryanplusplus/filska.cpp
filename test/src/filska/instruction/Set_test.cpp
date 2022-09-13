@@ -14,6 +14,6 @@ TEST_GROUP(Set)
 TEST(Set, should_set_m)
 {
   Set(1.23).execute(state.state, std::cin, std::cout);
-  CHECK_EQUAL(1, state.pc);
-  DOUBLES_EQUAL(1.23, state.m, 0.0001);
+  CHECK_EQUAL(1, state.reg.pc);
+  DOUBLES_EQUAL(1.23, state.reg.m, 0.0001);
 }

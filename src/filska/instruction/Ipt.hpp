@@ -1,8 +1,7 @@
 #ifndef filska_instruction_Ipt_hpp
 #define filska_instruction_Ipt_hpp
 
-#include <iostream>
-#include "filska/Program.hpp"
+#include "filska/Instruction.hpp"
 
 namespace filska::instruction {
   class Ipt : public filska::Instruction {
@@ -13,8 +12,8 @@ namespace filska::instruction {
       input >> f;
 
       if(input) {
-        state.m = f;
-        state.pc += 1;
+        state.reg.m = f;
+        state.reg.pc += 1;
       }
       else {
         state.done = true;

@@ -14,6 +14,6 @@ TEST_GROUP(Jmp)
 TEST(Jmp, should_jump_to_another_sub_program)
 {
   Jmp("blah").execute(state.state, std::cin, std::cout);
-  CHECK_EQUAL(1, state.pc);
+  CHECK_EQUAL(1, state.reg.pc);
   CHECK_TRUE(state.current_sub_program == "blah");
 }

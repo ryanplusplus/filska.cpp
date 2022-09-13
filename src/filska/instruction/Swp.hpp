@@ -1,7 +1,7 @@
 #ifndef filska_instruction_Swp_hpp
 #define filska_instruction_Swp_hpp
 
-#include "filska/Program.hpp"
+#include "filska/Instruction.hpp"
 
 namespace filska::instruction {
   class Swp : public filska::Instruction {
@@ -13,14 +13,14 @@ namespace filska::instruction {
 
     void execute(State& state, std::istream&, std::ostream&) override
     {
-      auto& _a = value_for_char(a, state);
-      auto& _b = value_for_char(b, state);
+      auto& _a = reg_for_char(a, state);
+      auto& _b = reg_for_char(b, state);
 
       auto temp = _a;
       _a = _b;
       _b = temp;
 
-      state.pc += 1;
+      state.reg.pc += 1;
     }
 
    protected:

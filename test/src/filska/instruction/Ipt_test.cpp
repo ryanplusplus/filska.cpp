@@ -17,8 +17,8 @@ TEST(Ipt, should_read_float_from_input_and_write_it_to_m)
 {
   input << "1.23";
   Ipt().execute(state.state, input, std::cout);
-  CHECK_EQUAL(1, state.pc);
-  DOUBLES_EQUAL(1.23, state.m, 0.0001);
+  CHECK_EQUAL(1, state.reg.pc);
+  DOUBLES_EQUAL(1.23, state.reg.m, 0.0001);
   CHECK_FALSE(state.done);
 }
 

@@ -4,24 +4,41 @@
 #include "filska/Instruction.hpp"
 
 struct InstructionState {
-  float x{};
-  float y{};
-  float z{};
+  struct {
+    double x{};
+    double y{};
+    double z{};
 
-  float m{};
+    double m{};
 
-  size_t pc{};
+    size_t pc{};
+  } reg{};
+
+  struct {
+    bool l{};
+    bool g{};
+    bool e{};
+    bool z{};
+  } flag{};
 
   bool done{};
 
   std::string current_sub_program{};
 
   filska::Instruction::State state{
-    x,
-    y,
-    z,
-    m,
-    pc,
+    {
+      reg.x,
+      reg.y,
+      reg.z,
+      reg.m,
+      reg.pc,
+    },
+    {
+      flag.l,
+      flag.g,
+      flag.e,
+      flag.z,
+    },
     done,
     current_sub_program,
   };

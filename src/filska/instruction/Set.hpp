@@ -1,7 +1,7 @@
 #ifndef filska_instruction_Set_hpp
 #define filska_instruction_Set_hpp
 
-#include "filska/Program.hpp"
+#include "filska/Instruction.hpp"
 
 namespace filska::instruction {
   class Set : public filska::Instruction {
@@ -13,8 +13,8 @@ namespace filska::instruction {
 
     void execute(State& state, std::istream&, std::ostream&) override
     {
-      state.m = v;
-      state.pc += 1;
+      state.reg.m = v;
+      state.reg.pc += 1;
     }
 
    protected:

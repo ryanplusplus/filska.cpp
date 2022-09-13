@@ -1,7 +1,7 @@
 #ifndef filska_instruction_Jpr_hpp
 #define filska_instruction_Jpr_hpp
 
-#include "filska/Program.hpp"
+#include "filska/Instruction.hpp"
 
 namespace filska::instruction {
   class Jpr : public filska::Instruction {
@@ -14,7 +14,7 @@ namespace filska::instruction {
     void execute(State& state, std::istream&, std::ostream&) override
     {
       state.current_sub_program = target;
-      state.pc = 0;
+      state.reg.pc = 0;
     }
 
    protected:

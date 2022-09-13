@@ -13,10 +13,10 @@ TEST_GROUP(Tmz)
 
 TEST(Tmz, should_transfer_m_to_z)
 {
-  state.m = 7;
+  state.reg.m = 7;
 
   Tmz().execute(state.state, std::cin, std::cout);
-  CHECK_EQUAL(1, state.pc);
-  CHECK_EQUAL(7, state.z);
-  CHECK_EQUAL(7, state.m);
+  CHECK_EQUAL(1, state.reg.pc);
+  CHECK_EQUAL(7, state.reg.z);
+  CHECK_EQUAL(7, state.reg.m);
 }

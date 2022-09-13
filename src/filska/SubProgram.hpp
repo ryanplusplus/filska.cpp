@@ -7,12 +7,14 @@
 
 namespace filska {
   struct SubProgram {
-    float m{};
+    double m{};
 
-    bool z{};
-    bool e{};
-    bool g{};
-    bool l{};
+    struct {
+      bool l{};
+      bool g{};
+      bool e{};
+      bool z{};
+    } flag{};
 
     size_t pc{};
 
@@ -32,10 +34,10 @@ namespace filska {
 
       return true &&
         (this->m == other.m) &&
-        (this->z == other.z) &&
-        (this->e == other.e) &&
-        (this->g == other.g) &&
-        (this->l == other.l) &&
+        (this->flag.l == other.flag.l) &&
+        (this->flag.g == other.flag.g) &&
+        (this->flag.e == other.flag.e) &&
+        (this->flag.z == other.flag.z) &&
         (this->pc == other.pc);
     }
   };
