@@ -58,6 +58,11 @@ TEST(InstructionParser, should_parse_atn)
   should_parse_to("atn", Atn());
 }
 
+TEST(InstructionParser, should_parse_cel)
+{
+  should_parse_to("cel", Cel());
+}
+
 TEST(InstructionParser, should_parse_chr)
 {
   should_parse_to("chr", Chr());
@@ -86,6 +91,11 @@ TEST(InstructionParser, should_parse_div)
 TEST(InstructionParser, should_parse_exp)
 {
   should_parse_to("exp", Exp());
+}
+
+TEST(InstructionParser, should_parse_flr)
+{
+  should_parse_to("flr", Flr());
 }
 
 TEST(InstructionParser, should_parse_gto)
