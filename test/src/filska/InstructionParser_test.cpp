@@ -113,6 +113,11 @@ TEST(InstructionParser, should_parse_jpr)
   should_parse_to("jpr,foo", Jpr("foo"));
 }
 
+TEST(InstructionParser, should_parse_log)
+{
+  should_parse_to("log", Log());
+}
+
 TEST(InstructionParser, should_parse_mod)
 {
   should_parse_to("mod,x=yz", Bop("mod", 'x', 'y', 'z'));

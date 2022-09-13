@@ -53,6 +53,9 @@ std::unique_ptr<Instruction> InstructionParser::parse(std::string s)
   else if(s.starts_with("jpr")) {
     return std::make_unique<Jpr>(s.substr(4));
   }
+  else if(s == "log") {
+    return std::make_unique<Log>();
+  }
   else if(s == "prt") {
     return std::make_unique<Prt>();
   }

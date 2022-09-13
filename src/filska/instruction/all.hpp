@@ -15,6 +15,7 @@
 #include "filska/instruction/Ipt.hpp"
 #include "filska/instruction/Jmp.hpp"
 #include "filska/instruction/Jpr.hpp"
+#include "filska/instruction/Log.hpp"
 #include "filska/instruction/Prt.hpp"
 #include "filska/instruction/Set.hpp"
 #include "filska/instruction/Sin.hpp"
