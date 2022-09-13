@@ -14,6 +14,9 @@ std::unique_ptr<Instruction> InstructionParser::parse(std::string s)
     s.starts_with("pow")) {
     return std::make_unique<Bop>(s.substr(0, 3), s[4], s[6], s[7]);
   }
+  else if(s.starts_with("chr")) {
+    return std::make_unique<Chr>();
+  }
   else if(s.starts_with("cmp")) {
     return std::make_unique<Cmp>(s[4]);
   }

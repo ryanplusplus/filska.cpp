@@ -43,6 +43,11 @@ TEST(InstructionParser, should_parse_add)
   should_parse_to("add,x=yz", Bop("add", 'x', 'y', 'z'));
 }
 
+TEST(InstructionParser, should_parse_chr)
+{
+  should_parse_to("chr", Chr());
+}
+
 TEST(InstructionParser, should_parse_cmp)
 {
   should_parse_to("cmp,x", Cmp('x'));

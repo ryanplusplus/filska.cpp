@@ -2,6 +2,7 @@
 #define filska_instructions_all_hpp
 
 #include "filska/instruction/Bop.hpp"
+#include "filska/instruction/Chr.hpp"
 #include "filska/instruction/Cmp.hpp"
 #include "filska/instruction/Gto.hpp"
 #include "filska/instruction/Hlt.hpp"
