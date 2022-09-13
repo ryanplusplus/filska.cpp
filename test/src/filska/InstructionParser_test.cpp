@@ -53,6 +53,11 @@ TEST(InstructionParser, should_parse_cmp)
   should_parse_to("cmp,x", Cmp('x'));
 }
 
+TEST(InstructionParser, should_parse_dec)
+{
+  should_parse_to("dec", Dec());
+}
+
 TEST(InstructionParser, should_parse_div)
 {
   should_parse_to("div,x=yz", Bop("div", 'x', 'y', 'z'));
@@ -66,6 +71,11 @@ TEST(InstructionParser, should_parse_gto)
 TEST(InstructionParser, should_parse_hlt)
 {
   should_parse_to("hlt", Hlt());
+}
+
+TEST(InstructionParser, should_parse_inc)
+{
+  should_parse_to("inc", Inc());
 }
 
 TEST(InstructionParser, should_parse_ipt)

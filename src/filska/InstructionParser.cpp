@@ -20,11 +20,17 @@ std::unique_ptr<Instruction> InstructionParser::parse(std::string s)
   else if(s.starts_with("cmp")) {
     return std::make_unique<Cmp>(s[4]);
   }
+  else if(s.starts_with("dec")) {
+    return std::make_unique<Dec>();
+  }
   else if(s.starts_with("gto")) {
     return std::make_unique<Gto>(std::stol(s.substr(4)));
   }
   else if(s == "hlt") {
     return std::make_unique<Hlt>();
+  }
+  else if(s == "inc") {
+    return std::make_unique<Inc>();
   }
   else if(s == "ipt") {
     return std::make_unique<Ipt>();
