@@ -65,14 +65,23 @@ std::unique_ptr<Instruction> InstructionParser::parse(std::string s)
   else if(s == "log") {
     return std::make_unique<Log>();
   }
+  else if(s == "neg") {
+    return std::make_unique<Neg>();
+  }
   else if(s == "prt") {
     return std::make_unique<Prt>();
+  }
+  else if(s == "rnd") {
+    return std::make_unique<Rnd>();
   }
   else if(s.starts_with("set")) {
     return std::make_unique<Set>(std::stof(s.substr(4)));
   }
   else if(s.starts_with("sin")) {
     return std::make_unique<Sin>();
+  }
+  else if(s == "sqr") {
+    return std::make_unique<Sqr>();
   }
   else if(s.starts_with("swp")) {
     return std::make_unique<Swp>(s[4], s[5]);

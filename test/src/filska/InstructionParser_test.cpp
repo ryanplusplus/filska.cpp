@@ -143,6 +143,11 @@ TEST(InstructionParser, should_parse_mul)
   should_parse_to("mul,x=yz", Bop("mul", 'x', 'y', 'z'));
 }
 
+TEST(InstructionParser, should_parse_neg)
+{
+  should_parse_to("neg", Neg());
+}
+
 TEST(InstructionParser, should_parse_pow)
 {
   should_parse_to("pow,x=yz", Bop("pow", 'x', 'y', 'z'));
@@ -153,6 +158,11 @@ TEST(InstructionParser, should_parse_prt)
   should_parse_to("prt", Prt());
 }
 
+TEST(InstructionParser, should_parse_rnd)
+{
+  should_parse_to("rnd", Rnd());
+}
+
 TEST(InstructionParser, should_parse_set)
 {
   should_parse_to("set,1.23", Set(1.23));
@@ -161,6 +171,11 @@ TEST(InstructionParser, should_parse_set)
 TEST(InstructionParser, should_parse_sin)
 {
   should_parse_to("sin", Sin());
+}
+
+TEST(InstructionParser, should_parse_sqr)
+{
+  should_parse_to("sqr", Sqr());
 }
 
 TEST(InstructionParser, should_parse_sub)
