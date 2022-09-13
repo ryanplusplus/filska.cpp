@@ -1,6 +1,9 @@
 #ifndef filska_instructions_all_hpp
 #define filska_instructions_all_hpp
 
+#include "filska/instruction/Acs.hpp"
+#include "filska/instruction/Asn.hpp"
+#include "filska/instruction/Atn.hpp"
 #include "filska/instruction/Bop.hpp"
 #include "filska/instruction/Chr.hpp"
 #include "filska/instruction/Cmp.hpp"

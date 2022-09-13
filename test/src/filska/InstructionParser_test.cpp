@@ -38,9 +38,24 @@ TEST(InstructionParser, should_throw_if_instruction_is_unknown)
   });
 }
 
+TEST(InstructionParser, should_parse_acs)
+{
+  should_parse_to("acs", Acs());
+}
+
 TEST(InstructionParser, should_parse_add)
 {
   should_parse_to("add,x=yz", Bop("add", 'x', 'y', 'z'));
+}
+
+TEST(InstructionParser, should_parse_asn)
+{
+  should_parse_to("asn", Asn());
+}
+
+TEST(InstructionParser, should_parse_atn)
+{
+  should_parse_to("atn", Atn());
 }
 
 TEST(InstructionParser, should_parse_chr)
