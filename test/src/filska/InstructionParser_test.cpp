@@ -83,6 +83,11 @@ TEST(InstructionParser, should_parse_div)
   should_parse_to("div,x=yz", Bop("div", 'x', 'y', 'z'));
 }
 
+TEST(InstructionParser, should_parse_exp)
+{
+  should_parse_to("exp", Exp());
+}
+
 TEST(InstructionParser, should_parse_gto)
 {
   should_parse_to("gto,-42", Gto(-42));

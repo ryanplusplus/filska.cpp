@@ -9,6 +9,7 @@
 #include "filska/instruction/Cmp.hpp"
 #include "filska/instruction/Cos.hpp"
 #include "filska/instruction/Dec.hpp"
+#include "filska/instruction/Exp.hpp"
 #include "filska/instruction/Gto.hpp"
 #include "filska/instruction/Hlt.hpp"
 #include "filska/instruction/Inc.hpp"
