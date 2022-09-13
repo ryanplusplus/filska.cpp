@@ -53,6 +53,11 @@ TEST(InstructionParser, should_parse_cmp)
   should_parse_to("cmp,x", Cmp('x'));
 }
 
+TEST(InstructionParser, should_parse_cos)
+{
+  should_parse_to("cos", Cos());
+}
+
 TEST(InstructionParser, should_parse_dec)
 {
   should_parse_to("dec", Dec());
@@ -118,6 +123,11 @@ TEST(InstructionParser, should_parse_set)
   should_parse_to("set,1.23", Set(1.23));
 }
 
+TEST(InstructionParser, should_parse_sin)
+{
+  should_parse_to("sin", Sin());
+}
+
 TEST(InstructionParser, should_parse_sub)
 {
   should_parse_to("sub,x=yz", Bop("sub", 'x', 'y', 'z'));
@@ -126,6 +136,11 @@ TEST(InstructionParser, should_parse_sub)
 TEST(InstructionParser, should_parse_swp)
 {
   should_parse_to("swp,xy", Swp('x', 'y'));
+}
+
+TEST(InstructionParser, should_parse_tan)
+{
+  should_parse_to("tan", Tan());
 }
 
 TEST(InstructionParser, should_parse_tmx)

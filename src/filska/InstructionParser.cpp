@@ -20,6 +20,9 @@ std::unique_ptr<Instruction> InstructionParser::parse(std::string s)
   else if(s.starts_with("cmp")) {
     return std::make_unique<Cmp>(s[4]);
   }
+  else if(s.starts_with("cos")) {
+    return std::make_unique<Cos>();
+  }
   else if(s.starts_with("dec")) {
     return std::make_unique<Dec>();
   }
@@ -47,8 +50,14 @@ std::unique_ptr<Instruction> InstructionParser::parse(std::string s)
   else if(s.starts_with("set")) {
     return std::make_unique<Set>(std::stof(s.substr(4)));
   }
+  else if(s.starts_with("sin")) {
+    return std::make_unique<Sin>();
+  }
   else if(s.starts_with("swp")) {
     return std::make_unique<Swp>(s[4], s[5]);
+  }
+  else if(s.starts_with("tan")) {
+    return std::make_unique<Tan>();
   }
   else if(s == "tmx") {
     return std::make_unique<Tmx>();
