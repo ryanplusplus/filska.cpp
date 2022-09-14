@@ -1,0 +1,32 @@
+" Calculates the first 46 elements of the Fibonacci sequence
+
+{ main
+  set,46
+  dec
+  dec
+  tmz
+  set,1
+  tmx
+  prt
+  jmp,nl
+  tmy
+  prt
+  jmp,nl
+  add,m=xy
+  swp,xy
+  tmy
+  prt
+  jmp,nl
+  tzm
+  dec
+  tst,z,3
+  tmz
+  gto,-9
+  hlt
+}
+
+{ nl
+  set,10
+  chr
+  jpr,main
+}
